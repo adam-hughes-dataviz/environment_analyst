@@ -1,0 +1,872 @@
+list.of.packages <- c("xlsx","dplyr","tidyverse", "readxl","janitor")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+lapply(list.of.packages, require, character.only=T)
+
+#setting working directory 
+wd <- setwd("C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data")
+
+###   1. AEC   ###
+
+#read in short form data
+AEC_UK_Short_data <- read.xlsx("UK-AEC-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.AEC.uk <- as.data.frame(t(AEC_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.AEC.uk <- tibble::rownames_to_column(t.AEC.uk, "VO")
+#rename cell A1 "Year" 
+t.AEC.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.AEC.uk.r <- t.AEC.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.AEC.uk.r$company <- "AEC"
+t.AEC.uk.r$company_name <- "AECOM"
+#convert from character to numeric
+i <- c(1:87)
+t.AEC.uk.r[ ,i] <- apply(t.AEC.uk.r[ ,i], 2, 
+                      function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.AEC.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.AEC.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.AEC.uk.xlsx", row.names = F, showNA = F)
+
+###   2. ANTH   ###
+
+#read in short form data
+ANTH_UK_Short_data <- read.xlsx("UK-ANTH-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.ANTH.uk <- as.data.frame(t(ANTH_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.ANTH.uk <- tibble::rownames_to_column(t.ANTH.uk, "VO")
+#rename cell A1 "Year" 
+t.ANTH.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.ANTH.uk.r <- t.ANTH.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.ANTH.uk.r$company <- "ANTH"
+t.ANTH.uk.r$company_name <- "Anthesis Group"
+#convert from character to numeric
+i <- c(1:87)
+t.ANTH.uk.r[ ,i] <- apply(t.ANTH.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.ANTH.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.ANTH.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.ANTH.uk.xlsx", row.names = F, showNA = F)
+
+###   3. APM   ###
+
+#read in short form data
+APM_UK_Short_data <- read.xlsx("UK-APM-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.APM.uk <- as.data.frame(t(APM_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.APM.uk <- tibble::rownames_to_column(t.APM.uk, "VO")
+#rename cell A1 "Year" 
+t.APM.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.APM.uk.r <- t.APM.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.APM.uk.r$company <- "APM"
+t.APM.uk.r$company_name <- "APEM"
+#convert from character to numeric
+i <- c(1:87)
+t.APM.uk.r[ ,i] <- apply(t.APM.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.APM.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.APM.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.APM.uk.xlsx", row.names = F, showNA = F)
+
+###   4. ARC   ###
+
+#read in short form data
+ARC_UK_Short_data <- read.xlsx("UK-ARC-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.ARC.uk <- as.data.frame(t(ARC_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.ARC.uk <- tibble::rownames_to_column(t.ARC.uk, "VO")
+#rename cell A1 "Year" 
+t.ARC.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.ARC.uk.r <- t.ARC.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.ARC.uk.r$company <- "ARC"
+t.ARC.uk.r$company_name <- "Arcadis"
+#convert from character to numeric
+i <- c(1:87)
+t.ARC.uk.r[ ,i] <- apply(t.ARC.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.ARC.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.ARC.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.ARC.uk.xlsx", row.names = F, showNA = F)
+
+###   5. ARP   ###
+
+#read in short form data
+ARP_UK_Short_data <- read.xlsx("UK-ARP-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.ARP.uk <- as.data.frame(t(ARP_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.ARP.uk <- tibble::rownames_to_column(t.ARP.uk, "VO")
+#rename cell A1 "Year" 
+t.ARP.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.ARP.uk.r <- t.ARP.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.ARP.uk.r$company <- "ARP"
+t.ARP.uk.r$company_name <- "Arup"
+#convert from character to numeric
+i <- c(1:87)
+t.ARP.uk.r[ ,i] <- apply(t.ARP.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.ARP.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.ARP.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.ARP.uk.xlsx", row.names = F, showNA = F)
+
+###   6. BandV   ###
+
+#read in short form data
+BandV_UK_Short_data <- read.xlsx("UK-BandV-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.BandV.uk <- as.data.frame(t(BandV_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.BandV.uk <- tibble::rownames_to_column(t.BandV.uk, "VO")
+#rename cell A1 "Year" 
+t.BandV.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.BandV.uk.r <- t.BandV.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.BandV.uk.r$company <- "BandV"
+t.BandV.uk.r$company_name <- "Black & Veatch"
+#convert from character to numeric
+i <- c(1:87)
+t.BandV.uk.r[ ,i] <- apply(t.BandV.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.BandV.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.BandV.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.BandV.uk.xlsx", row.names = F, showNA = F)
+
+###   7. BUV   ###
+
+#read in short form data
+BUV_UK_Short_data <- read.xlsx("UK-BUV-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.BUV.uk <- as.data.frame(t(BUV_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.BUV.uk <- tibble::rownames_to_column(t.BUV.uk, "VO")
+#rename cell A1 "Year" 
+t.BUV.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.BUV.uk.r <- t.BUV.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.BUV.uk.r$company <- "BUV"
+t.BUV.uk.r$company_name <- "Bureau Veritas"
+#convert from character to numeric
+i <- c(1:87)
+t.BUV.uk.r[ ,i] <- apply(t.BUV.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.BUV.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.BUV.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.BUV.uk.xlsx", row.names = F, showNA = F)
+
+###   8. CEF   ###
+
+#read in short form data
+CEF_UK_Short_data <- read.xlsx("UK-CEF-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.CEF.uk <- as.data.frame(t(CEF_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.CEF.uk <- tibble::rownames_to_column(t.CEF.uk, "VO")
+#rename cell A1 "Year" 
+t.CEF.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.CEF.uk.r <- t.CEF.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.CEF.uk.r$company <- "CEF"
+t.CEF.uk.r$company_name <- "Cefas"
+#convert from character to numeric
+i <- c(1:87)
+t.CEF.uk.r[ ,i] <- apply(t.CEF.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.CEF.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.CEF.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.CEF.uk.xlsx", row.names = F, showNA = F)
+
+###   9. CPS   ###
+
+#read in short form data
+CPS_UK_Short_data <- read.xlsx("UK-CPS-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.CPS.uk <- as.data.frame(t(CPS_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.CPS.uk <- tibble::rownames_to_column(t.CPS.uk, "VO")
+#rename cell A1 "Year" 
+t.CPS.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.CPS.uk.r <- t.CPS.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.CPS.uk.r$company <- "CPS"
+t.CPS.uk.r$company_name <- "Capita"
+#convert from character to numeric
+i <- c(1:87)
+t.CPS.uk.r[ ,i] <- apply(t.CPS.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.CPS.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.CPS.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.CPS.uk.xlsx", row.names = F, showNA = F)
+
+###   10. DEL   ###
+
+#read in short form data
+DEL_UK_Short_data <- read.xlsx("UK-DEL-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.DEL.uk <- as.data.frame(t(DEL_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.DEL.uk <- tibble::rownames_to_column(t.DEL.uk, "VO")
+#rename cell A1 "Year" 
+t.DEL.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.DEL.uk.r <- t.DEL.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.DEL.uk.r$company <- "DEL"
+t.DEL.uk.r$company_name <- "Delta-Simons"
+#convert from character to numeric
+i <- c(1:87)
+t.DEL.uk.r[ ,i] <- apply(t.DEL.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.DEL.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.DEL.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.DEL.uk.xlsx", row.names = F, showNA = F)
+
+###   11. ERM   ###
+
+#read in short form data
+ERM_UK_Short_data <- read.xlsx("UK-ERM-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.ERM.uk <- as.data.frame(t(ERM_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.ERM.uk <- tibble::rownames_to_column(t.ERM.uk, "VO")
+#rename cell A1 "Year" 
+t.ERM.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.ERM.uk.r <- t.ERM.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.ERM.uk.r$company <- "ERM"
+t.ERM.uk.r$company_name <- "ERM"
+#convert from character to numeric
+i <- c(1:87)
+t.ERM.uk.r[ ,i] <- apply(t.ERM.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.ERM.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.ERM.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.ERM.uk.xlsx", row.names = F, showNA = F)
+
+###   12. GOL   ###
+
+#read in short form data
+GOL_UK_Short_data <- read.xlsx("UK-GOL-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.GOL.uk <- as.data.frame(t(GOL_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.GOL.uk <- tibble::rownames_to_column(t.GOL.uk, "VO")
+#rename cell A1 "Year" 
+t.GOL.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.GOL.uk.r <- t.GOL.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.GOL.uk.r$company <- "GOL"
+t.GOL.uk.r$company_name <- "Golder"
+#convert from character to numeric
+i <- c(1:87)
+t.GOL.uk.r[ ,i] <- apply(t.GOL.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.GOL.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.GOL.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.GOL.uk.xlsx", row.names = F, showNA = F)
+
+###   13. JAC   ###
+
+#read in short form data
+JAC_UK_Short_data <- read.xlsx("UK-JAC-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.JAC.uk <- as.data.frame(t(JAC_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.JAC.uk <- tibble::rownames_to_column(t.JAC.uk, "VO")
+#rename cell A1 "Year" 
+t.JAC.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.JAC.uk.r <- t.JAC.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.JAC.uk.r$company <- "JAC"
+t.JAC.uk.r$company_name <- "Jacobs"
+#convert from character to numeric
+i <- c(1:87)
+t.JAC.uk.r[ ,i] <- apply(t.JAC.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.JAC.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.JAC.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.JAC.uk.xlsx", row.names = F, showNA = F)
+
+###   14. JBA   ###
+
+#read in short form data
+JBA_UK_Short_data <- read.xlsx("UK-JBA-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.JBA.uk <- as.data.frame(t(JBA_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.JBA.uk <- tibble::rownames_to_column(t.JBA.uk, "VO")
+#rename cell A1 "Year" 
+t.JBA.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.JBA.uk.r <- t.JBA.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.JBA.uk.r$company <- "JBA"
+t.JBA.uk.r$company_name <- "JBA Consulting"
+#convert from character to numeric
+i <- c(1:87)
+t.JBA.uk.r[ ,i] <- apply(t.JBA.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.JBA.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.JBA.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.JBA.uk.xlsx", row.names = F, showNA = F)
+
+###   15. MOT   ###
+
+#read in short form data
+MOT_UK_Short_data <- read.xlsx("UK-MOT-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.MOT.uk <- as.data.frame(t(MOT_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.MOT.uk <- tibble::rownames_to_column(t.MOT.uk, "VO")
+#rename cell A1 "Year" 
+t.MOT.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.MOT.uk.r <- t.MOT.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.MOT.uk.r$company <- "MOT"
+t.MOT.uk.r$company_name <- "Mott MacDonald"
+#convert from character to numeric
+i <- c(1:87)
+t.MOT.uk.r[ ,i] <- apply(t.MOT.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.MOT.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.MOT.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.MOT.uk.xlsx", row.names = F, showNA = F)
+
+###   16. RAM   ###
+
+#read in short form data
+RAM_UK_Short_data <- read.xlsx("UK-RAM-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.RAM.uk <- as.data.frame(t(RAM_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.RAM.uk <- tibble::rownames_to_column(t.RAM.uk, "VO")
+#rename cell A1 "Year" 
+t.RAM.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.RAM.uk.r <- t.RAM.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.RAM.uk.r$company <- "RAM"
+t.RAM.uk.r$company_name <- "Ramboll"
+#convert from character to numeric
+i <- c(1:87)
+t.RAM.uk.r[ ,i] <- apply(t.RAM.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.RAM.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.RAM.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.RAM.uk.xlsx", row.names = F, showNA = F)
+
+###   17. RHD   ###
+
+#read in short form data
+RHD_UK_Short_data <- read.xlsx("UK-RHD-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.RHD.uk <- as.data.frame(t(RHD_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.RHD.uk <- tibble::rownames_to_column(t.RHD.uk, "VO")
+#rename cell A1 "Year" 
+t.RHD.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.RHD.uk.r <- t.RHD.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.RHD.uk.r$company <- "RHD"
+t.RHD.uk.r$company_name <- "Royal HaskoningDHV"
+#convert from character to numeric
+i <- c(1:87)
+t.RHD.uk.r[ ,i] <- apply(t.RHD.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.RHD.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.RHD.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.RHD.uk.xlsx", row.names = F, showNA = F)
+
+###   18. RIC   ###
+
+#read in short form data
+RIC_UK_Short_data <- read.xlsx("UK-RIC-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.RIC.uk <- as.data.frame(t(RIC_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.RIC.uk <- tibble::rownames_to_column(t.RIC.uk, "VO")
+#rename cell A1 "Year" 
+t.RIC.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.RIC.uk.r <- t.RIC.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.RIC.uk.r$company <- "RIC"
+t.RIC.uk.r$company_name <- "Ricardo"
+#convert from character to numeric
+i <- c(1:87)
+t.RIC.uk.r[ ,i] <- apply(t.RIC.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.RIC.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.RIC.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.RIC.uk.xlsx", row.names = F, showNA = F)
+
+###   19. RPS   ###
+
+#read in short form data
+RPS_UK_Short_data <- read.xlsx("UK-RPS-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.RPS.uk <- as.data.frame(t(RPS_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.RPS.uk <- tibble::rownames_to_column(t.RPS.uk, "VO")
+#rename cell A1 "Year" 
+t.RPS.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.RPS.uk.r <- t.RPS.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.RPS.uk.r$company <- "RPS"
+t.RPS.uk.r$company_name <- "RPS"
+#convert from character to numeric
+i <- c(1:87)
+t.RPS.uk.r[ ,i] <- apply(t.RPS.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.RPS.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.RPS.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.RPS.uk.xlsx", row.names = F, showNA = F)
+
+###   20. RSK   ###
+
+#read in short form data
+RSK_UK_Short_data <- read.xlsx("UK-RSK-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.RSK.uk <- as.data.frame(t(RSK_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.RSK.uk <- tibble::rownames_to_column(t.RSK.uk, "VO")
+#rename cell A1 "Year" 
+t.RSK.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.RSK.uk.r <- t.RSK.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.RSK.uk.r$company <- "RSK"
+t.RSK.uk.r$company_name <- "RSK"
+#convert from character to numeric
+i <- c(1:87)
+t.RSK.uk.r[ ,i] <- apply(t.RSK.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.RSK.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.RSK.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.RSK.uk.xlsx", row.names = F, showNA = F)
+
+###   21. SLR   ###
+
+#read in short form data
+SLR_UK_Short_data <- read.xlsx("UK-SLR-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.SLR.uk <- as.data.frame(t(SLR_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.SLR.uk <- tibble::rownames_to_column(t.SLR.uk, "VO")
+#rename cell A1 "Year" 
+t.SLR.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.SLR.uk.r <- t.SLR.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.SLR.uk.r$company <- "SLR"
+t.SLR.uk.r$company_name <- "SLR Consulting"
+#convert from character to numeric
+i <- c(1:87)
+t.SLR.uk.r[ ,i] <- apply(t.SLR.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.SLR.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.SLR.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.SLR.uk.xlsx", row.names = F, showNA = F)
+
+###   22. SNC   ###
+
+#read in short form data
+SNC_UK_Short_data <- read.xlsx("UK-SNC-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.SNC.uk <- as.data.frame(t(SNC_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.SNC.uk <- tibble::rownames_to_column(t.SNC.uk, "VO")
+#rename cell A1 "Year" 
+t.SNC.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.SNC.uk.r <- t.SNC.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.SNC.uk.r$company <- "SNC"
+t.SNC.uk.r$company_name <- "SNC-Lavalin"
+#convert from character to numeric
+i <- c(1:87)
+t.SNC.uk.r[ ,i] <- apply(t.SNC.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.SNC.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.SNC.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.SNC.uk.xlsx", row.names = F, showNA = F)
+
+###   23. STA   ###
+
+#read in short form data
+STA_UK_Short_data <- read.xlsx("UK-STA-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.STA.uk <- as.data.frame(t(STA_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.STA.uk <- tibble::rownames_to_column(t.STA.uk, "VO")
+#rename cell A1 "Year" 
+t.STA.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.STA.uk.r <- t.STA.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.STA.uk.r$company <- "STA"
+t.STA.uk.r$company_name <- "Stantec"
+#convert from character to numeric
+i <- c(1:87)
+t.STA.uk.r[ ,i] <- apply(t.STA.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.STA.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.STA.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.STA.uk.xlsx", row.names = F, showNA = F)
+
+###   24. SWE   ###
+
+#read in short form data
+SWE_UK_Short_data <- read.xlsx("UK-SWE-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.SWE.uk <- as.data.frame(t(SWE_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.SWE.uk <- tibble::rownames_to_column(t.SWE.uk, "VO")
+#rename cell A1 "Year" 
+t.SWE.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.SWE.uk.r <- t.SWE.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.SWE.uk.r$company <- "SWE"
+t.SWE.uk.r$company_name <- "Sweco"
+#convert from character to numeric
+i <- c(1:87)
+t.SWE.uk.r[ ,i] <- apply(t.SWE.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.SWE.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.SWE.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.SWE.uk.xlsx", row.names = F, showNA = F)
+
+###   25. TEM   ###
+
+#read in short form data
+TEM_UK_Short_data <- read.xlsx("UK-TEM-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.TEM.uk <- as.data.frame(t(TEM_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.TEM.uk <- tibble::rownames_to_column(t.TEM.uk, "VO")
+#rename cell A1 "Year" 
+t.TEM.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.TEM.uk.r <- t.TEM.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.TEM.uk.r$company <- "TEM"
+t.TEM.uk.r$company_name <- "The Temple Group"
+#convert from character to numeric
+i <- c(1:87)
+t.TEM.uk.r[ ,i] <- apply(t.TEM.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.TEM.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.TEM.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.TEM.uk.xlsx", row.names = F, showNA = F)
+
+###   26. WAR   ###
+
+#read in short form data
+WAR_UK_Short_data <- read.xlsx("UK-WAR-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.WAR.uk <- as.data.frame(t(WAR_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.WAR.uk <- tibble::rownames_to_column(t.WAR.uk, "VO")
+#rename cell A1 "Year" 
+t.WAR.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.WAR.uk.r <- t.WAR.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.WAR.uk.r$company <- "WAR"
+t.WAR.uk.r$company_name <- "Wardell Armstrong"
+#convert from character to numeric
+i <- c(1:87)
+t.WAR.uk.r[ ,i] <- apply(t.WAR.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.WAR.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.WAR.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.WAR.uk.xlsx", row.names = F, showNA = F)
+
+###   27. WAT   ###
+
+#read in short form data
+WAT_UK_Short_data <- read.xlsx("UK-WAT-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.WAT.uk <- as.data.frame(t(WAT_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.WAT.uk <- tibble::rownames_to_column(t.WAT.uk, "VO")
+#rename cell A1 "Year" 
+t.WAT.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.WAT.uk.r <- t.WAT.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.WAT.uk.r$company <- "WAT"
+t.WAT.uk.r$company_name <- "Waterman"
+#convert from character to numeric
+i <- c(1:87)
+t.WAT.uk.r[ ,i] <- apply(t.WAT.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.WAT.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.WAT.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.WAT.uk.xlsx", row.names = F, showNA = F)
+
+###   28. WOO   ###
+
+#read in short form data
+WOO_UK_Short_data <- read.xlsx("UK-WOO-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.WOO.uk <- as.data.frame(t(WOO_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.WOO.uk <- tibble::rownames_to_column(t.WOO.uk, "VO")
+#rename cell A1 "Year" 
+t.WOO.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.WOO.uk.r <- t.WOO.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.WOO.uk.r$company <- "WOO"
+t.WOO.uk.r$company_name <- "Wood Group"
+#convert from character to numeric
+i <- c(1:87)
+t.WOO.uk.r[ ,i] <- apply(t.WOO.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.WOO.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.WOO.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.WOO.uk.xlsx", row.names = F, showNA = F)
+
+###   29. WSP   ###
+
+#read in short form data
+WSP_UK_Short_data <- read.xlsx("UK-WSP-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.WSP.uk <- as.data.frame(t(WSP_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.WSP.uk <- tibble::rownames_to_column(t.WSP.uk, "VO")
+#rename cell A1 "Year" 
+t.WSP.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.WSP.uk.r <- t.WSP.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.WSP.uk.r$company <- "WSP"
+t.WSP.uk.r$company_name <- "WSP"
+#convert from character to numeric
+i <- c(1:87)
+t.WSP.uk.r[ ,i] <- apply(t.WSP.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.WSP.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.WSP.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.WSP.uk.xlsx", row.names = F, showNA = F)
+
+###   30. WYG   ###
+
+#read in short form data
+WYG_UK_Short_data <- read.xlsx("UK-WYG-DATA.xlsx", sheetIndex = 1, as.data.frame = T, check.names = F)
+#transpose short form data 
+t.WYG.uk <- as.data.frame(t(WYG_UK_Short_data), stringsAsFactors = F)
+#bring the row names into a column 
+t.WYG.uk <- tibble::rownames_to_column(t.WYG.uk, "VO")
+#rename cell A1 "Year" 
+t.WYG.uk[1,1] = "Year"
+#shift first row up to column headings and allow for duplicates, renaming as such 
+t.WYG.uk.r <- t.WYG.uk %>%
+  row_to_names(row_number = 1) %>%
+  clean_names()
+#Add a column for organisation name 
+t.WYG.uk.r$company <- "WYG"
+t.WYG.uk.r$company_name <- "Tetra Tech Europe"
+#convert from character to numeric
+i <- c(1:87)
+t.WYG.uk.r[ ,i] <- apply(t.WYG.uk.r[ ,i], 2, 
+                         function(x) as.numeric(as.character(x)))
+#Add global categorisation
+t.WYG.uk.r$global_uk <- "UK"
+
+#write new file in new folder
+write.xlsx(t.WYG.uk.r, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/t.WYG.uk.xlsx", row.names = F, showNA = F)
+
+
+
+###   create bind   ###
+
+
+#equate colnames
+colnames(t.AEC.uk.r)=colnames(t.ANTH.uk.r)=colnames(t.APM.uk.r)=colnames(t.ARC.uk.r)=colnames(t.ARP.uk.r)=colnames(t.BandV.uk.r)=colnames(t.BUV.uk.r)=
+  colnames(t.CEF.uk.r)=colnames(t.CPS.uk.r)=colnames(t.DEL.uk.r)=colnames(t.ERM.uk.r)=colnames(t.GOL.uk.r)=colnames(t.JAC.uk.r)=colnames(t.JBA.uk.r)=
+  colnames(t.MOT.uk.r)=colnames(t.RAM.uk.r)=colnames(t.RHD.uk.r)=colnames(t.RIC.uk.r)=colnames(t.RPS.uk.r)=colnames(t.RSK.uk.r)=colnames(t.SLR.uk.r)=
+  colnames(t.SNC.uk.r)=colnames(t.STA.uk.r)=colnames(t.SWE.uk.r)=colnames(t.TEM.uk.r)=colnames(t.WAR.uk.r)=colnames(t.WAT.uk.r)=colnames(t.WOO.uk.r)=
+  colnames(t.WSP.uk.r)=colnames(t.WYG.uk.r)
+  
+  
+#rbind together 
+big.bind.uk <- rbind(t.AEC.uk.r, t.ANTH.uk.r, t.APM.uk.r, t.ARC.uk.r, t.ARP.uk.r, t.BandV.uk.r, t.BUV.uk.r, t.CEF.uk.r, t.CPS.uk.r, t.DEL.uk.r, t.ERM.uk.r,
+                     t.GOL.uk.r, t.JAC.uk.r, t.JBA.uk.r, t.MOT.uk.r, t.RAM.uk.r, t.RHD.uk.r, t.RIC.uk.r, t.RPS.uk.r, t.RSK.uk.r, t.SLR.uk.r, t.SNC.uk.r,
+                     t.STA.uk.r, t.SWE.uk.r, t.TEM.uk.r, t.WAR.uk.r, t.WAT.uk.r, t.WOO.uk.r, t.WSP.uk.r, t.WYG.uk.r)
+
+#Change column names 
+colnames(big.bind.uk) <- c("Year", 
+                               "[Global] Turnover, group - Local", "[Global] Turnover, EC, Local", "[Global] Turnover, group", "[Global] Turnover, EC", 
+                               "[Global] Staff, group", "[Global] Staff, EC",
+                               "[UK finances] Group", "[UK finances] Environmental services", "[UK finances] EC", "[UK finances] Other environmental",
+                               "[UK finances] Non-environmental", "[UK finances] UK (int)", "[UK finances] UK", "[UK finances] Other",
+                               "[UK finances] Multinational/FTSE 350", "[UK finances] Multinational/FTSE 350 - Other", "[UK finances] % of work that is EC", "[UK finances] EC growth", 
+                               "[UK finances] 5 year growth, group", "[UK finances] 5 year growth, environmental services",
+                               "[UK finances] 5 year growth, EC", "[UK finances] Operating profit (EBITA), group", 
+                               "[UK finances] Operating margin, group (% of gross turover)", 
+                               "[UK staff] Staff, group (average for year)", "[UK staff] Staff, environmental services", "[UK staff] Staff, EC", 
+                               "[UK staff] Turnover per head, environmental", "[UK staff] Turnover per head, EC", 
+                               "[Contracts] Contracts", "[Contracts] Average contract value",
+                               "[UK service areas] Air quality", "[UK service areas] Climate change & energy", "[UK service areas] Contaminated site assessment/remediation",
+                               "[UK service areas] Ecological/wildlife services", "[UK service areas] Impact assessment", "[UK service areas] Environmental risk & due diligence",
+                               "[UK service areas] Environmental management & compliance", "[UK service areas] Noise & vibration", "[UK service areas] Sustainability strategy & ESG",
+                               "[UK service areas] Waste management/circular economy", "[UK service areas] Water quality & resource management", 
+                               "[UK service areas] Other services", "[UK service areas] x-check",
+                               "[UK service areas] Air quality, % of EC", "[UK service areas] Climate change & energy, % of EC", "[UK service areas] Contaminated site assessment/remediation, % of EC",
+                               "[UK service areas] Ecological/wildlife services, % of EC", "[UK service areas] Impact assessment, % of EC", "[UK service areas] Environmental risk & due diligence, % of EC",
+                               "[UK service areas] Environmental management & compliance, % of EC", "[UK service areas] Noise & vibration, % of EC", "[UK service areas] Sustainability strategy & ESG, % of EC",
+                               "[UK service areas] Waste management/circular economy, % of EC", "[UK service areas] Water quality & resource management, % of EC", 
+                               "[UK service areas] Other services, % of EC", "[UK service areas] x-check, % of EC",
+                               "[UK clients] Government & agencies", "[UK clients] Energy & utilities (inc. waste)", "[UK clients] Extractive, manufacturing & processing",
+                               "[UK clients] Infrastructure & development", "[UK clients] Financial & service sectors", "[UK clients] Other",
+                               "[UK clients] Government & agencies, % of EC", "[UK clients] Energy & utilities (inc. waste), % of EC", "[UK clients] Extractive, manufacturing & processing, % of EC",
+                               "[UK clients] Infrastructure & development, % of EC", "[UK clients] Financial & service sectors, % of EC", "[UK clients] Other, % of EC",
+                               "[Locations] Number of offices", "[Locations] East Anglia", "[Locations] East Midlands", "[Locations] London", "[Locations] North East",
+                               "[Locations] North West", "[Locations] Northern Ireland", "[Locations] Scotland", "[Locations] South East", "[Locations] South West",
+                               "[Locations] Wales", "[Locations] West Midlands", "[Locations] Yorkshire & Humberside", "[Locations] x-check",
+                               "xyx consultancy","[US] Organic revenue", "[US] Organic growth", "[US] Organic growth, %", "Company TLA", "Company name", "Global/UK")
+
+big.bind.uk[,25:27] <- round(big.bind.uk[,25:27], digits = 0)
+
+#write combined file
+write.xlsx(big.bind.uk, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data_long/big.bind.uk.xlsx", row.names = F, showNA = F)
