@@ -1,0 +1,429 @@
+#Install packages - Ensure No. TRUE = No. packages
+list.of.packages <- c("xlsx","tidyverse","tibble")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+lapply(list.of.packages, require, character.only=T)
+
+#set working directory
+setwd("C:/Users/adamh/Google Drive/UK MIS/UK profiles")
+
+###   1. AEC   ###
+
+#read in company profile data tab and clean to filter rows and columns
+AEC_data_UK <- read.xlsx("AEC.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+AEC_UK_col_clean <- AEC_data_UK[,-2]
+AEC_UK_row_clean <- AEC_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+AEC_UK_no_nas <- AEC_UK_row_clean[rowSums(is.na(AEC_UK_row_clean)) !=ncol(AEC_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(AEC_UK_no_nas)[1] <-"AEC"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(AEC_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-AEC-DATA.xlsx", row.names = F, showNA = F)
+
+###   2. ANTH   ###
+
+#read in company profile data tab and clean to filter rows and columns
+ANTH_data_UK <- read.xlsx("ANTH.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+ANTH_UK_col_clean <- ANTH_data_UK[,-2]
+ANTH_UK_row_clean <- ANTH_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+ANTH_UK_no_nas <- ANTH_UK_row_clean[rowSums(is.na(ANTH_UK_row_clean)) !=ncol(ANTH_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(ANTH_UK_no_nas)[1] <-"ANTH"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(ANTH_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-ANTH-DATA.xlsx", row.names = F, showNA = F)
+
+###   3. APM   ###
+
+#read in company profile data tab and clean to filter rows and columns
+APM_data_UK <- read.xlsx("APM.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+APM_UK_col_clean <- APM_data_UK[,-2]
+APM_UK_row_clean <- APM_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+APM_UK_no_nas <- APM_UK_row_clean[rowSums(is.na(APM_UK_row_clean)) !=ncol(APM_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(APM_UK_no_nas)[1] <-"APM"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(APM_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-APM-DATA.xlsx", row.names = F, showNA = F)
+
+###   4. ARC   ###
+
+#read in company profile data tab and clean to filter rows and columns
+ARC_data_UK <- read.xlsx("ARC.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+ARC_UK_col_clean <- ARC_data_UK[,-2]
+ARC_UK_row_clean <- ARC_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+ARC_UK_no_nas <- ARC_UK_row_clean[rowSums(is.na(ARC_UK_row_clean)) !=ncol(ARC_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(ARC_UK_no_nas)[1] <-"ARC"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(ARC_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-ARC-DATA.xlsx", row.names = F, showNA = F)
+
+###   5. ARP   ###
+
+#read in company profile data tab and clean to filter rows and columns
+ARP_data_UK <- read.xlsx("ARP.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+ARP_UK_col_clean <- ARP_data_UK[,-2]
+ARP_UK_row_clean <- ARP_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+ARP_UK_no_nas <- ARP_UK_row_clean[rowSums(is.na(ARP_UK_row_clean)) !=ncol(ARP_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(ARP_UK_no_nas)[1] <-"ARP"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(ARP_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-ARP-DATA.xlsx", row.names = F, showNA = F)
+
+###   6. BandV   ###
+
+#read in company profile data tab and clean to filter rows and columns
+BandV_data_UK <- read.xlsx("BandV.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+BandV_UK_col_clean <- BandV_data_UK[,-2]
+BandV_UK_row_clean <- BandV_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+BandV_UK_no_nas <- BandV_UK_row_clean[rowSums(is.na(BandV_UK_row_clean)) !=ncol(BandV_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(BandV_UK_no_nas)[1] <-"BandV"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(BandV_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-BandV-DATA.xlsx", row.names = F, showNA = F)
+
+###   7. BUV   ###
+
+#read in company profile data tab and clean to filter rows and columns
+BUV_data_UK <- read.xlsx("BUV.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+BUV_UK_col_clean <- BUV_data_UK[,-2]
+BUV_UK_row_clean <- BUV_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+BUV_UK_no_nas <- BUV_UK_row_clean[rowSums(is.na(BUV_UK_row_clean)) !=ncol(BUV_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(BUV_UK_no_nas)[1] <-"BUV"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(BUV_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-BUV-DATA.xlsx", row.names = F, showNA = F)
+
+###   8. CEF   ###
+
+#read in company profile data tab and clean to filter rows and columns
+CEF_data_UK <- read.xlsx("CEF.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+CEF_UK_col_clean <- CEF_data_UK[,-2]
+CEF_UK_row_clean <- CEF_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+CEF_UK_no_nas <- CEF_UK_row_clean[rowSums(is.na(CEF_UK_row_clean)) !=ncol(CEF_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(CEF_UK_no_nas)[1] <-"CEF"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(CEF_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-CEF-DATA.xlsx", row.names = F, showNA = F)
+
+###   9. CPS   ###
+
+#read in company profile data tab and clean to filter rows and columns
+CPS_data_UK <- read.xlsx("CPS.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+CPS_UK_col_clean <- CPS_data_UK[,-2]
+CPS_UK_row_clean <- CPS_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+CPS_UK_no_nas <- CPS_UK_row_clean[rowSums(is.na(CPS_UK_row_clean)) !=ncol(CPS_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(CPS_UK_no_nas)[1] <-"CPS"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(CPS_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-CPS-DATA.xlsx", row.names = F, showNA = F)
+
+###   10. DEL (1)   ###
+
+#read in company profile data tab and clean to filter rows and columns
+DEL_data_UK <- read.xlsx("DEL (1).xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+DEL_UK_col_clean <- DEL_data_UK[,-2]
+DEL_UK_row_clean <- DEL_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+DEL_UK_no_nas <- DEL_UK_row_clean[rowSums(is.na(DEL_UK_row_clean)) !=ncol(DEL_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(DEL_UK_no_nas)[1] <-"DEL"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(DEL_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-DEL-DATA.xlsx", row.names = F, showNA = F)
+
+###   11. ERM   ###
+
+#read in company profile data tab and clean to filter rows and columns
+ERM_data_UK <- read.xlsx("ERM.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+ERM_UK_col_clean <- ERM_data_UK[,-2]
+ERM_UK_row_clean <- ERM_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+ERM_UK_no_nas <- ERM_UK_row_clean[rowSums(is.na(ERM_UK_row_clean)) !=ncol(ERM_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(ERM_UK_no_nas)[1] <-"ERM"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(ERM_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-ERM-DATA.xlsx", row.names = F, showNA = F)
+
+###   12. GOL   ###
+
+#read in company profile data tab and clean to filter rows and columns
+GOL_data_UK <- read.xlsx("GOL.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+GOL_UK_col_clean <- GOL_data_UK[,-2]
+GOL_UK_row_clean <- GOL_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+GOL_UK_no_nas <- GOL_UK_row_clean[rowSums(is.na(GOL_UK_row_clean)) !=ncol(GOL_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(GOL_UK_no_nas)[1] <-"GOL"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(GOL_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-GOL-DATA.xlsx", row.names = F, showNA = F)
+
+###   13. JAC   ###
+
+#read in company profile data tab and clean to filter rows and columns
+JAC_data_UK <- read.xlsx("JAC.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+JAC_UK_col_clean <- JAC_data_UK[,-2]
+JAC_UK_row_clean <- JAC_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+JAC_UK_no_nas <- JAC_UK_row_clean[rowSums(is.na(JAC_UK_row_clean)) !=ncol(JAC_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(JAC_UK_no_nas)[1] <-"JAC"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(JAC_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-JAC-DATA.xlsx", row.names = F, showNA = F)
+
+###   14. JBA   ###
+
+#read in company profile data tab and clean to filter rows and columns
+JBA_data_UK <- read.xlsx("JBA.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+JBA_UK_col_clean <- JBA_data_UK[,-2]
+JBA_UK_row_clean <- JBA_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+JBA_UK_no_nas <- JBA_UK_row_clean[rowSums(is.na(JBA_UK_row_clean)) !=ncol(JBA_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(JBA_UK_no_nas)[1] <-"JBA"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(JBA_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-JBA-DATA.xlsx", row.names = F, showNA = F)
+
+###   15. MOT   ###
+
+#read in company profile data tab and clean to filter rows and columns
+MOT_data_UK <- read.xlsx("MOT.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+MOT_UK_col_clean <- MOT_data_UK[,-2]
+MOT_UK_row_clean <- MOT_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+MOT_UK_no_nas <- MOT_UK_row_clean[rowSums(is.na(MOT_UK_row_clean)) !=ncol(MOT_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(MOT_UK_no_nas)[1] <-"MOT"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(MOT_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-MOT-DATA.xlsx", row.names = F, showNA = F)
+
+###   16. RAM   ###
+
+#read in company profile data tab and clean to filter rows and columns
+RAM_data_UK <- read.xlsx("RAM.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+RAM_UK_col_clean <- RAM_data_UK[,-2]
+RAM_UK_row_clean <- RAM_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+RAM_UK_no_nas <- RAM_UK_row_clean[rowSums(is.na(RAM_UK_row_clean)) !=ncol(RAM_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(RAM_UK_no_nas)[1] <-"RAM"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(RAM_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-RAM-DATA.xlsx", row.names = F, showNA = F)
+
+###   17. RHD   ###
+
+#read in company profile data tab and clean to filter rows and columns
+RHD_data_UK <- read.xlsx("RHD.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+RHD_UK_col_clean <- RHD_data_UK[,-2]
+RHD_UK_row_clean <- RHD_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+RHD_UK_no_nas <- RHD_UK_row_clean[rowSums(is.na(RHD_UK_row_clean)) !=ncol(RHD_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(RHD_UK_no_nas)[1] <-"RHD"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(RHD_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-RHD-DATA.xlsx", row.names = F, showNA = F)
+
+###   18. RIC   ###
+
+#read in company profile data tab and clean to filter rows and columns
+RIC_data_UK <- read.xlsx("RIC.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+RIC_UK_col_clean <- RIC_data_UK[,-2]
+RIC_UK_row_clean <- RIC_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+RIC_UK_no_nas <- RIC_UK_row_clean[rowSums(is.na(RIC_UK_row_clean)) !=ncol(RIC_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(RIC_UK_no_nas)[1] <-"RIC"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(RIC_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-RIC-DATA.xlsx", row.names = F, showNA = F)
+
+###   19. RPS   ###
+
+#read in company profile data tab and clean to filter rows and columns
+RPS_data_UK <- read.xlsx("RPS.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+RPS_UK_col_clean <- RPS_data_UK[,-2]
+RPS_UK_row_clean <- RPS_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+RPS_UK_no_nas <- RPS_UK_row_clean[rowSums(is.na(RPS_UK_row_clean)) !=ncol(RPS_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(RPS_UK_no_nas)[1] <-"RPS"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(RPS_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-RPS-DATA.xlsx", row.names = F, showNA = F)
+
+###   20. RSK   ###
+
+#read in company profile data tab and clean to filter rows and columns
+RSK_data_UK <- read.xlsx("RSK.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+RSK_UK_col_clean <- RSK_data_UK[,-2]
+RSK_UK_row_clean <- RSK_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+RSK_UK_no_nas <- RSK_UK_row_clean[rowSums(is.na(RSK_UK_row_clean)) !=ncol(RSK_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(RSK_UK_no_nas)[1] <-"RSK"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(RSK_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-RSK-DATA.xlsx", row.names = F, showNA = F)
+
+###   21. SLR   ###
+
+#read in company profile data tab and clean to filter rows and columns
+SLR_data_UK <- read.xlsx("SLR.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+SLR_UK_col_clean <- SLR_data_UK[,-2]
+SLR_UK_row_clean <- SLR_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+SLR_UK_no_nas <- SLR_UK_row_clean[rowSums(is.na(SLR_UK_row_clean)) !=ncol(SLR_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(SLR_UK_no_nas)[1] <-"SLR"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(SLR_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-SLR-DATA.xlsx", row.names = F, showNA = F)
+
+###   22. SNC   ###
+
+#read in company profile data tab and clean to filter rows and columns
+SNC_data_UK <- read.xlsx("SNC.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+SNC_UK_col_clean <- SNC_data_UK[,-2]
+SNC_UK_row_clean <- SNC_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+SNC_UK_no_nas <- SNC_UK_row_clean[rowSums(is.na(SNC_UK_row_clean)) !=ncol(SNC_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(SNC_UK_no_nas)[1] <-"SNC"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(SNC_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-SNC-DATA.xlsx", row.names = F, showNA = F)
+
+###   23. STA   ###
+
+#read in company profile data tab and clean to filter rows and columns
+STA_data_UK <- read.xlsx("STA.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+STA_UK_col_clean <- STA_data_UK[,-2]
+STA_UK_row_clean <- STA_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+STA_UK_no_nas <- STA_UK_row_clean[rowSums(is.na(STA_UK_row_clean)) !=ncol(STA_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(STA_UK_no_nas)[1] <-"STA"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(STA_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-STA-DATA.xlsx", row.names = F, showNA = F)
+
+###   24. SWE   ###
+
+#read in company profile data tab and clean to filter rows and columns
+SWE_data_UK <- read.xlsx("SWE.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+SWE_UK_col_clean <- SWE_data_UK[,-2]
+SWE_UK_row_clean <- SWE_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+SWE_UK_no_nas <- SWE_UK_row_clean[rowSums(is.na(SWE_UK_row_clean)) !=ncol(SWE_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(SWE_UK_no_nas)[1] <-"SWE"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(SWE_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-SWE-DATA.xlsx", row.names = F, showNA = F)
+
+###   25. TEM   ###
+
+#read in company profile data tab and clean to filter rows and columns
+TEM_data_UK <- read.xlsx("TEM.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+TEM_UK_col_clean <- TEM_data_UK[,-2]
+TEM_UK_row_clean <- TEM_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+TEM_UK_no_nas <- TEM_UK_row_clean[rowSums(is.na(TEM_UK_row_clean)) !=ncol(TEM_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(TEM_UK_no_nas)[1] <-"TEM"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(TEM_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-TEM-DATA.xlsx", row.names = F, showNA = F)
+
+###   26. WAR   ###
+
+#read in company profile data tab and clean to filter rows and columns
+WAR_data_UK <- read.xlsx("WAR.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+WAR_UK_col_clean <- WAR_data_UK[,-2]
+WAR_UK_row_clean <- WAR_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+WAR_UK_no_nas <- WAR_UK_row_clean[rowSums(is.na(WAR_UK_row_clean)) !=ncol(WAR_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(WAR_UK_no_nas)[1] <-"WAR"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(WAR_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-WAR-DATA.xlsx", row.names = F, showNA = F)
+
+###   27. WAT   ###
+
+#read in company profile data tab and clean to filter rows and columns
+WAT_data_UK <- read.xlsx("WAT.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+WAT_UK_col_clean <- WAT_data_UK[,-2]
+WAT_UK_row_clean <- WAT_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+WAT_UK_no_nas <- WAT_UK_row_clean[rowSums(is.na(WAT_UK_row_clean)) !=ncol(WAT_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(WAT_UK_no_nas)[1] <-"WAT"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(WAT_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-WAT-DATA.xlsx", row.names = F, showNA = F)
+
+###   28. WOO   ###
+
+#read in company profile data tab and clean to filter rows and columns
+WOO_data_UK <- read.xlsx("WOO.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+WOO_UK_col_clean <- WOO_data_UK[,-2]
+WOO_UK_row_clean <- WOO_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+WOO_UK_no_nas <- WOO_UK_row_clean[rowSums(is.na(WOO_UK_row_clean)) !=ncol(WOO_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(WOO_UK_no_nas)[1] <-"WOO"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(WOO_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-WOO-DATA.xlsx", row.names = F, showNA = F)
+
+###   29. WSP   ###
+
+#read in company profile data tab and clean to filter rows and columns
+WSP_data_UK <- read.xlsx("WSP.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+WSP_UK_col_clean <- WSP_data_UK[,-2]
+WSP_UK_row_clean <- WSP_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+WSP_UK_no_nas <- WSP_UK_row_clean[rowSums(is.na(WSP_UK_row_clean)) !=ncol(WSP_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(WSP_UK_no_nas)[1] <-"WSP"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(WSP_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-WSP-DATA.xlsx", row.names = F, showNA = F)
+
+###   30. WYG   ###
+
+#read in company profile data tab and clean to filter rows and columns
+WYG_data_UK <- read.xlsx("WYG.xlsx", sheetIndex = 2, startRow = 7, colIndex = 2:20, as.data.frame = T, check.names = F)
+WYG_UK_col_clean <- WYG_data_UK[,-2]
+WYG_UK_row_clean <- WYG_UK_col_clean[-1,]
+#Get rid of rows containing N/A as their row.name
+WYG_UK_no_nas <- WYG_UK_row_clean[rowSums(is.na(WYG_UK_row_clean)) !=ncol(WYG_UK_row_clean), ]
+#Change cell A1 to the company TLA
+names(WYG_UK_no_nas)[1] <-"WYG"
+
+#Write a new Excel spreadsheet saved in profiles_as_data in the global profiles
+write.xlsx(WYG_UK_no_nas, "C:/Users/adamh/Google Drive/UK MIS/UK profiles/profiles_as_data/UK-WYG-DATA.xlsx", row.names = F, showNA = F)
+
