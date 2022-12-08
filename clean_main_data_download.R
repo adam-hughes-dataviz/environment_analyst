@@ -74,5 +74,29 @@ write.xlsx(top100_dataset_21_22, "top100_21_22.xlsx", row.names = F)
 
 ###rbind the files to stack them###
 top100_bind <- rbind(top100_dataset_19_20, top100_dataset_20_21, top100_dataset_21_22)
+#Change all 0s to NULLs such that they show up blank in the outputted spreadsheet#
+top100_bind[top100_bind == 0] <- NA
+
 #write the file as a new xlsx#
-write.xlsx(top100_bind, "top_100_bind.xlsx", row.names = F)
+write.xlsx(top100_bind, "top_100_bind.xlsx", row.names = F, showNA = F)
+
+
+
+###create the staff dataset"
+top_100_group_staff_prelim <- top100_dataset[, -2:-21]
+top_100_group_staff <- top_100_group_staff_prelim[, c(1,8,7,6,5,4,3,2)]
+#convert to long form#
+top_100_group_staff_long <- melt(data = top_100_group_staff,
+                                 id.vars = "Organisation ", 
+                                 variable.name = "Year",
+                                 value.name = "Group staff")
+
+#convert factor of Year to number#
+top_100_group_staff_long$Year <- as.numeric(as.character(top_100_group_staff_long$Year))
+top_100_group_staff_long$`Group staff` <- as.numeric(as.character(top_100_group_staff_long$`Group staff`))
+
+#change 0s to N/As#
+top_100_group_staff_long[top_100_group_staff_long == 0] <- NA
+  
+#write group staff file#
+write.xlsx(top_100_group_staff_long, "top_100_group_staff.xlsx", row.names = F, showNA = F)
